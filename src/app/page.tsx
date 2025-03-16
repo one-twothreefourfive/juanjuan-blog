@@ -62,7 +62,7 @@ export default function Home() {
             <div className="text-center md:text-left space-y-4 flex-1">
               <h1 className="text-3xl font-bold text-gray-800">卷卷</h1>
               <p className="text-lg text-purple-500">{age}</p>
-              <p className="text-md text-gray-600">我是一个活泼、可爱、喜欢粉色的小女孩</p>
+              <p className="text-md text-gray-600">我是一个活泼、可爱、喜欢紫色和粉色的小女孩</p>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 <span className="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-sm">开朗</span>
                 <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">活泼</span>
@@ -108,10 +108,11 @@ export default function Home() {
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-purple-500">我会做的有趣事情</h3>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-pink-100 text-pink-600 rounded-full">跳儿歌舞蹈</span>
-                <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full">科学小实验</span>
-                <span className="px-3 py-1 bg-rose-100 text-rose-600 rounded-full">轮滑</span>
-                <span className="px-3 py-1 bg-pink-100 text-pink-600 rounded-full">自行车</span>
+                <span className="px-3 py-1 bg-pink-100 text-pink-600 rounded-full">画画</span>
+                <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full">跳舞</span>
+                <span className="px-3 py-1 bg-rose-100 text-rose-600 rounded-full">科学小实验</span>
+                <span className="px-3 py-1 bg-pink-100 text-pink-600 rounded-full">轮滑</span>
+                <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full">自行车</span>
               </div>
             </div>
           </div>
