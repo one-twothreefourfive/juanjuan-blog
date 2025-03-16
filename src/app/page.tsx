@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ImageCarousel from './components/ImageCarousel';
 
 export default function Home() {
   const [age, setAge] = useState('4岁半');
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [
+  const initialImages = [
     '/images/juanjuan-beach.jpg',
     '/images/107d961c531d5fb6537393195dc045f.jpg',
     '/images/1ed0135d23621812e1e5d1da8cfd72f.jpg',
@@ -13,15 +13,6 @@ export default function Home() {
     '/images/d4a429d139bedbe1ef2ec14795aa170.jpg'
   ];
   const birthDate = new Date('2020-09-15');
-
-  useEffect(() => {
-    // 图片轮播定时器
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const calculateAge = () => {
@@ -51,14 +42,7 @@ export default function Home() {
         {/* 基本信息区 */}
         <div className="bg-white rounded-3xl shadow-xl p-8 transform hover:scale-105 transition-transform duration-300">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-pink-300 shadow-lg">
-              <img
-                src={images[currentImageIndex]}
-                alt="卷卷的照片"
-                className="w-full h-full object-cover transition-opacity duration-500"
-                loading="eager"
-              />
-            </div>
+            <ImageCarousel initialImages={initialImages} />
             <div className="text-center md:text-left space-y-4 flex-1">
               <h1 className="text-3xl font-bold text-gray-800">卷卷</h1>
               <p className="text-lg text-purple-500">{age}</p>
