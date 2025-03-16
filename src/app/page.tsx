@@ -4,7 +4,24 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [age, setAge] = useState('4岁半');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = [
+    '/images/juanjuan-beach.jpg',
+    '/images/107d961c531d5fb6537393195dc045f.jpg',
+    '/images/1ed0135d23621812e1e5d1da8cfd72f.jpg',
+    '/images/b623ead11d2b2e74c250dc1ce4a242d.jpg',
+    '/images/d4a429d139bedbe1ef2ec14795aa170.jpg'
+  ];
   const birthDate = new Date('2020-09-15');
+
+  useEffect(() => {
+    // 图片轮播定时器
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const calculateAge = () => {
@@ -36,9 +53,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-pink-300 shadow-lg">
               <img
-                src="/juanjuan-beach.jpg"
-                alt="卷卷在海边"
-                className="w-full h-full object-cover"
+                src={images[currentImageIndex]}
+                alt="卷卷的照片"
+                className="w-full h-full object-cover transition-opacity duration-500"
                 loading="eager"
               />
             </div>
