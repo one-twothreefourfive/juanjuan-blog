@@ -2,9 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import ImageCarousel from './components/ImageCarousel';
+import Timeline from './components/Timeline';
+import MessageBoard from './components/MessageBoard';
+import ArtworkGallery from './components/ArtworkGallery';
+import CountdownTimer from './components/CountdownTimer';
+import MediaPlayer from './components/MediaPlayer';
+import { JUANJUAN_BIRTH_DATE } from './constants/dates';
 
 export default function Home() {
-  const [age, setAge] = useState('4岁半');
+  const [age, setAge] = useState('');
   const initialImages = [
     '/images/juanjuan-beach.jpg',
     '/images/107d961c531d5fb6537393195dc045f.jpg',
@@ -12,29 +18,25 @@ export default function Home() {
     '/images/b623ead11d2b2e74c250dc1ce4a242d.jpg',
     '/images/d4a429d139bedbe1ef2ec14795aa170.jpg'
   ];
-  const birthDate = new Date('2020-09-15');
-
   useEffect(() => {
     const calculateAge = () => {
       const now = new Date();
-      const years = now.getFullYear() - birthDate.getFullYear();
-      const months = now.getMonth() - birthDate.getMonth();
-      const totalMonths = years * 12 + months;
+      const years = now.getFullYear() - JUANJUAN_BIRTH_DATE.getFullYear();
+      const months = now.getMonth() - JUANJUAN_BIRTH_DATE.getMonth();
+      const days = now.getDate() - JUANJUAN_BIRTH_DATE.getDate();
+      
+      let totalMonths = years * 12 + months;
+      if (days < 0) {
+        totalMonths--;
+      }
+      
       const displayAge = `${Math.floor(totalMonths / 12)}岁${totalMonths % 12}个月`;
       setAge(displayAge);
     };
     calculateAge();
   }, []);
 
-  const calculateBirthday = () => {
-    const now = new Date();
-    const nextBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-    if (nextBirthday < now) {
-      nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
-    }
-    const diff = Math.ceil((nextBirthday.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    return diff;
-  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-100 to-purple-100 p-8">
@@ -65,7 +67,8 @@ export default function Home() {
               <div className="flex gap-4 items-center">
                 <span className="text-4xl">🦆</span>
                 <span className="text-4xl">🐧</span>
-                <span className="text-lg text-gray-600">鸭子和企鹅</span>
+                <span className="text-4xl">🐼</span>
+                <span className="text-lg text-gray-600">鸭子、和企鹅和熊猫</span>
               </div>
             </div>
             <div className="space-y-4">
@@ -110,10 +113,7 @@ export default function Home() {
               <h3 className="text-xl font-semibold text-purple-500">爸爸妈妈的联系方式</h3>
               <p className="text-lg text-gray-600">电话：152****6353</p>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-purple-500">距离下次生日还有</h3>
-              <p className="text-2xl font-bold text-pink-500">{calculateBirthday()}天</p>
-            </div>
+
           </div>
         </div>
 
@@ -129,6 +129,21 @@ export default function Home() {
             <span className="text-3xl">✨</span>
           </div>
         </div>
+
+        {/* 倒计时区域 */}
+        <CountdownTimer />
+
+        {/* 成长时间线 */}
+        <Timeline />
+
+        {/* 作品展示区 */}
+        <ArtworkGallery />
+
+        {/* 媒体播放器 */}
+        <MediaPlayer />
+
+        {/* 留言板 */}
+        <MessageBoard />
 
         {/* 页脚 */}
         <footer className="text-center text-sm text-gray-500">
